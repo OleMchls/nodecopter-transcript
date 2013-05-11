@@ -4,7 +4,7 @@ client = arDrone.createClient()
 
 # Returns any time directive in a line in milliseconds
 getTime = (line) ->
-  m = line.match /(\d+)\s*(seconds|sec|s)/
+  m = line.match /(\d+|\d+\.\d+)\s*(seconds|sec|s)/
   return null unless m?
   (parseFloat(m[1])*1000)|0
 
@@ -17,7 +17,6 @@ getSpeed = (line) ->
   else if (m = line.match /quarter[- \t]*speed/)
     return 0.25
   else if (m = line.match /(\d+\.\d+)[- \t]*speed/)
-    console.log m
     return parseFloat(m[1])
 
 
