@@ -1,6 +1,6 @@
 #fs = require 'fs'
 #readline = require 'readline'
-parser = require './lib/parser.coffee'
+parse = require './lib/parser.coffee'
 liner = require 'line-reader'
 filename = null
 
@@ -15,14 +15,23 @@ unless filename?
   process.exit(1)
 
 
-commands = []
-
 console.log "Scheduling your trip!\n"
-i = 1
-liner.eachLine filename, (line, last) ->
-  console.log "\t#{i++}) #{line}"
-console.log "\n"
-liner.eachLine filename, (line) -> parser line
+
+[i, lines] = [1, []]
+
+lineHelper = (line) ->
+  console.log "    #{i++}) #{line}"
+  lines.push line
+
+liner.eachLine(filename, lineHelper).then ->
+  parse(line) for line in lines 
+  parse("quit")
+  
+
+#console.log lines
+#liner.eachLine filename, (line) -> parser line
+
+
 
 
 
