@@ -22,6 +22,9 @@ class Queue
     else if m = c.command.match(/animate\s+(.*)/)
       console.log("client.animate('#{m[1]}')") if showCommands
       client.animate(m[1])
+    else if m = c.command.match(/animateLeds\s+(.*)/)
+      console.log("client.animateLeds('#{m[1]}')") if showCommands
+      client.animateLeds(m[1])
     else if c.command == 'takeoff'
       console.log("client.takeoff()") if showCommands
       client.takeoff() if sendCommands
