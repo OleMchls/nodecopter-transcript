@@ -1,4 +1,4 @@
-commmand_queue = require 'queue.coffee'
+command_queue = require './queue.coffee'
 
 # Make a command queue
 queue = new command_queue()
@@ -9,12 +9,18 @@ command_map =
   'higher|up|raise': 'up'
   'lower|down': 'down'
   'land|give up|settle down|simmer down': 'land'
-  '(move\s+)?left': 'left'
-  '(move\s+)?right': 'right'
-  'turn (left|counterclockwise)': 'counterclockwise'
+  'turn (left|counterclockwise)': 'counterClockwise'
   'turn (right|clockwise)': 'clockwise'
-  'forward|front': 'front'
-  'backward|back': 'back'
+  'left[\\-\\s]flip': 'animate flipLeft'
+  'right[\\-\\s]flip': 'animate flipRight'
+  '(forward|ahead|front)[\\-\\s]flip': 'animate flipAhead'
+  '(backward|behind|back)[\\-\\s]flip': 'animate flipBehind'
+  '(move\\s+)?left': 'left'
+  '(move\\s+)?right': 'right'
+  '(move\\s+)?forward|front': 'front'
+  '(move\\s+)?backward|back': 'back'
+
+
 
 # Returns any time directive in a line in milliseconds
 getTime = (line) ->
@@ -23,7 +29,7 @@ getTime = (line) ->
   (parseFloat(m[1])*1000)|0
 
 # Returns any speed directive in a line
-getSpeed = (line) ->
+getSpeed = (line, command) ->
   if (m = line.match /full[- \t]*speed/)
     return 1.0
   else if (m = line.match /half[- \t]*speed/)
@@ -32,10 +38,14 @@ getSpeed = (line) ->
     return 0.25
   else if (m = line.match /(\d+\.\d+)[- \t]*speed/)
     return parseFloat(m[1])
-  return 0.1
+
+  if command? and command.match /front|back/
+    return 0.1
+  
+  return 0.5
 
 # Returns any copter command directive in a line
-getCommand: (line) ->
+getCommand = (line) ->
   command = null
   for match, cmd of command_map
     if line.match(new RegExp(match))
@@ -43,18 +53,26 @@ getCommand: (line) ->
       break
   return command
   
-# Processes a human readable line
-module.exports = (line) ->
+parseLine = (line) ->
   if line.match /takeoff/
-    return commmand_queue.push { command: 'takeoff', time: 5000 }
-    
+    return queue.push { command: 'takeoff', time: 5000 }
+  
+  command = getCommand(line)   
   time = getTime(line)
-  speed = getSpeed(line)
-  command = getCommand(line) 
+  speed = getSpeed(line, command)
+  
 
   # Don't do anything unless we are able to parse a command
   return unless command?
 
   # Queue it
   queue.push { time: time, speed: speed, command: command }
+
+
+# Processes a human readable line
+module.exports = (line) ->
+  parseLine(line) for line in line.split(';')
+
+
+  
 

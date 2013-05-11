@@ -4,7 +4,7 @@ rl = readline.createInterface process.stdin, process.stdout
 
 # ✈ 🚀
 
-rl.setPrompt '🚁 '
+rl.setPrompt '> ' #'🚁 '
 rl.prompt()
 
 rl.on 'line', (line) ->
