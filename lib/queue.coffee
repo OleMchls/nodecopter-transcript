@@ -1,6 +1,5 @@
 arDrone = require 'ar-drone'
 client = arDrone.createClient()
-
 sendCommands = !('--test' in process.argv)
 
 class Queue

@@ -4,11 +4,11 @@ rl = readline.createInterface process.stdin, process.stdout
 
 # ✈ 🚀
 
-rl.setPrompt '> ' #'🚁 '
+rl.setPrompt '> '
 rl.prompt()
 
 rl.on 'line', (line) ->
-  parser line
+  parser line 	
   rl.prompt()
 
 rl.on 'close', ->
