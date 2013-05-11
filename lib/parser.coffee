@@ -1,4 +1,5 @@
 arDrone = require 'ar-drone'
+commmand_queue = require 'queue.coffee'
 
 client = arDrone.createClient()
 
@@ -33,7 +34,7 @@ command_map =
   'turn (right|clockwise)': 'clockwise'
   'forward|front': 'front'
   'backward|back': 'back'
-
+  
 
 module.exports = (line) ->
   if line.match /takeoff/
@@ -52,7 +53,10 @@ module.exports = (line) ->
       break
 
   # Queue it
+  commmand_queue.push command
 
+  # Run queue
+  commmand_queue.start()
 
   #console.log "client.after(#{time}, -> @stop(); @['#{command}'](#{speed}))"
 
