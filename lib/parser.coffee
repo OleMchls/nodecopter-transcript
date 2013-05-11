@@ -17,11 +17,12 @@ command_map =
   '(move\\s+)?right': 'right'
   '(move\\s+)?forward|front': 'front'
   '(move\\s+)?backward|back': 'back'
+  'quit': 'quit'
 
 # Returns any time directive in a line in milliseconds
 getTime = (line) ->
   m = line.match /(\d+|\d+\.\d+)\s*(seconds|sec|s)/
-  return 5000 unless m?
+  return 3000 unless m?
   (parseFloat(m[1])*1000)|0
 
 # Returns any speed directive in a line
