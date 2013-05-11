@@ -16,7 +16,9 @@ class Queue
     c = @queue.shift()
     
     if c.command == 'quit'
-      process.exit(0)
+      console.log 'Wooosh this was a trip!'
+      console.log 'powerd by @rsandor and @codestars'
+      process.exit 0
     else if m = c.command.match(/animate\s+(.*)/)
       console.log("client.animate('#{m[1]}')") if showCommands
       client.animate(m[1])
