@@ -1,7 +1,4 @@
-arDrone = require 'ar-drone'
 commmand_queue = require 'queue.coffee'
-
-client = arDrone.createClient()
 
 # Returns any time directive in a line in milliseconds
 getTime = (line) ->
@@ -34,7 +31,8 @@ command_map =
   'turn (right|clockwise)': 'clockwise'
   'forward|front': 'front'
   'backward|back': 'back'
-  
+
+queue = new command_queue();  
 
 module.exports = (line) ->
   if line.match /takeoff/
@@ -50,5 +48,15 @@ module.exports = (line) ->
       break
 
   # Queue it
-  commmand_queue.push { time: time, speed: speed, command: command }
+  queue.push { time: time, speed: speed, command: command }
+
+  #console.log "client.after(#{time}, -> @stop(); @['#{command}'](#{speed}))"
+
+  #console.log "client['#{command}'](#{speed})"
+  #console.log "setTimeout (-> client.stop()), #{time}"
+
+
+  #if line.match /(go)?(higher|up)/
+
+>>>>>>> Stashed changes
 
