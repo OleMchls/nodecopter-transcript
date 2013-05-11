@@ -18,6 +18,9 @@
     "ar-drone": "0.0.5",
     "coffee-script": "~1.6.2",
     "line-reader": "~0.2.3",
-    "node-tesseract": "0.0.1"
+    "node-tesseract": "0.0.1",
+    "nodecr": "0.0.5",
+    "underscore": "~1.4.4",
+    "easyimage": "~0.1.3"
   }
 }
