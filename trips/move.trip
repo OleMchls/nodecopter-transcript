@@ -1,0 +1,6 @@
+Helicopter should takeoff
+go up for 2 seconds at full speed
+go forward at half speed for 1 seconds
+go down for 2 second at full speed
+go back at half speed for 1 sec
+and finally land

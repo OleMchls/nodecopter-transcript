@@ -9,11 +9,9 @@ for arg in process.argv
     filename = arg 
     break
 
-
 unless filename?
   console.log "You must specify a .trip file!"
   process.exit(1)
-
 
 console.log "Scheduling your trip!\n"
 
