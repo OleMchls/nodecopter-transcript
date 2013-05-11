@@ -1,0 +1,17 @@
+{
+  "name": "nodecopter-transcript",
+  "version": "0.0.0",
+  "description": "talk to you drone, as myou would talk with a friend",
+  "main": "app.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nesQuick/nodecopter-transcript.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "12403f683f0cc7382bf0b2227aacd57ca572d62c"
+}
