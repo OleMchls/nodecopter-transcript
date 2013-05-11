@@ -26,7 +26,12 @@ command_map =
   'higher|up|raise': 'up'
   'lower|down': 'down'
   'land|give up|settle down|simmer down': 'land'
-  
+  '(move\s+)?left': 'left'
+  '(move\s+)?right': 'right'
+  'turn (left|counterclockwise)': 'counterclockwise'
+  'turn (right|clockwise)': 'clockwise'
+  'forward|front': 'front'
+  'backward|back': 'back'
 
 
 module.exports = (line) ->
@@ -46,7 +51,7 @@ module.exports = (line) ->
       break
 
   # Queue it
-  
+
 
   #console.log "client.after(#{time}, -> @stop(); @['#{command}'](#{speed}))"
 
