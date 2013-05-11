@@ -5,7 +5,7 @@ client = arDrone.createClient()
 # Returns any time directive in a line in milliseconds
 getTime = (line) ->
   m = line.match /(\d+|\d+\.\d+)\s*(seconds|sec|s)/
-  return null unless m?
+  return 5000 unless m?
   (parseFloat(m[1])*1000)|0
 
 # Returns any speed directive in a line
@@ -18,6 +18,7 @@ getSpeed = (line) ->
     return 0.25
   else if (m = line.match /(\d+\.\d+)[- \t]*speed/)
     return parseFloat(m[1])
+  return 0.1
 
 
 # Map of client commands
