@@ -1,0 +1,9 @@
+Drone should takeoff
+go up for 4 seconds
+go left for 2 seconds
+go right for 2 seconds
+go forward for 2 seconds
+go back for 2 seconds
+turn right for 4 seconds
+turn left for 4 seconds
+The drone will now simmer down
