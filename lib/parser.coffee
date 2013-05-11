@@ -53,7 +53,7 @@ module.exports = (line) ->
       break
 
   # Queue it
-  commmand_queue.push command
+  commmand_queue.push { time: time, speed: speed, command: command }
 
   # Run queue
   commmand_queue.start()
