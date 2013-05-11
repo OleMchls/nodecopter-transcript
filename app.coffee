@@ -1,5 +1,6 @@
 fs = require 'fs'
 readline = require 'readline'
+praser = require './lib/parser.coffee'
 
 rd = readline.createInterface {
     input: fs.createReadStream('example.trip')
@@ -8,4 +9,4 @@ rd = readline.createInterface {
 }
 
 rd.on 'line', (line) -> 
-    console.log line
+    praser line
