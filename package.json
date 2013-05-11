@@ -16,6 +16,7 @@
   "gitHead": "12403f683f0cc7382bf0b2227aacd57ca572d62c",
   "dependencies": {
     "ar-drone": "0.0.5",
-    "coffee-script": "~1.6.2"
+    "coffee-script": "~1.6.2",
+    "line-reader": "~0.2.3"
   }
 }
