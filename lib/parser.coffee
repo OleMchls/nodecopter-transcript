@@ -22,8 +22,11 @@ getSpeed = (line) ->
 
 # Map of client commands
 command_map =
+  'stop': 'stop'
   'higher|up|raise': 'up'
   'lower|down': 'down'
+  'land|give up|settle down|simmer down': 'land'
+  
 
 
 module.exports = (line) ->
@@ -35,13 +38,20 @@ module.exports = (line) ->
   
   time = getTime(line)
   speed = getSpeed(line)
-  
-  for match, command of command_map
-    if line.match(new RegExp(match))
-      #console.log "client.after(#{time}, -> @stop(); @['#{command}'](#{speed}))"
+  command = ''
 
-      console.log "client['#{command}'](#{speed})"
-      console.log "setTimeout (-> client.stop()), #{time}"
+  for match, cmd of command_map
+    if line.match(new RegExp(match))
+      command = cmd
+      break
+
+  # Queue it
+  
+
+  #console.log "client.after(#{time}, -> @stop(); @['#{command}'](#{speed}))"
+
+  #console.log "client['#{command}'](#{speed})"
+  #console.log "setTimeout (-> client.stop()), #{time}"
 
 
   #if line.match /(go)?(higher|up)/
