@@ -13,5 +13,5 @@ rl.on 'line', (line) ->
 
 rl.on 'close', ->
   console.log 'Wooosh this was a trip!'
-  console.log 'powerd by @rsander and @codestars'
+  console.log 'powerd by @rsandor and @codestars'
   process.exit 0
