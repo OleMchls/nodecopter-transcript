@@ -38,11 +38,8 @@ command_map =
 
 module.exports = (line) ->
   if line.match /takeoff/
-    #client.takeoff()
-
-    console.log "client.takeoff()"
-    return
-  
+    return commmand_queue.push { command: 'takeoff', time: 5000 }
+    
   time = getTime(line)
   speed = getSpeed(line)
   command = ''
@@ -55,16 +52,3 @@ module.exports = (line) ->
   # Queue it
   commmand_queue.push { time: time, speed: speed, command: command }
 
-  # Run queue
-  commmand_queue.start()
-
-  #console.log "client.after(#{time}, -> @stop(); @['#{command}'](#{speed}))"
-
-  #console.log "client['#{command}'](#{speed})"
-  #console.log "setTimeout (-> client.stop()), #{time}"
-
-
-  #if line.match /(go)?(higher|up)/
-
-
-  #console.log line
